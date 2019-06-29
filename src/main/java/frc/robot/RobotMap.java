@@ -19,4 +19,18 @@ public class RobotMap {
   public static final int ENCODER = 1;
   public static final int SERVO = 1;
 
+  // Solenoid PCM Channel
+  public static final int COL_SOL_HATCH = 0;
+  public static final int COL_SOL_DROPINTAKEMOTORS = 1;
+  public static final int COL_SOL_POKEEYES = 2;
+// Collector Sensor IDs
+  public static final int COL_SENSE_HATCH = 1;
+  public static final int COL_SENSE_BALL = 0;
+// Drop Motor Victors IDs
+  public static final int COL_DROPINTAKEMOTOR_0 = 18;
+  public static final int COL_DROPINTAKEMOTOR_1 = 19;
+// Arm Collector ID
+
+  public static final int COL_ARMINTAKEMOTOR_0 = 20;
+  public static final int COL_ARMINTAKEMOTOR_1 = 21;
 }
