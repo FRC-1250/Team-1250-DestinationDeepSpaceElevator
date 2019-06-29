@@ -23,7 +23,7 @@ public class Sub_Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ARM_DART0);
+  public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
   DigitalInput encoder = new DigitalInput(RobotMap.ENCODER);
   Servo servo = new Servo(RobotMap.SERVO);
 

@@ -15,7 +15,7 @@ package frc.robot;
  */
 public class RobotMap {
 
-  public static final int ARM_DART0 = 20;
+  public static final int ELEVATOR_MOTOR_0 = 16;
   public static final int ENCODER = 1;
   public static final int SERVO = 1;
 
