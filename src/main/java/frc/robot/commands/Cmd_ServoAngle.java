@@ -26,7 +26,7 @@ public class Cmd_ServoAngle extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.s_dart.setServoAngle(position);
+    Robot.s_elevator.setServoAngle(position);
   }
 
 }

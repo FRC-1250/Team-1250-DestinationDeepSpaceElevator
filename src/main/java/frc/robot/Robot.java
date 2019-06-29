@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Cmd_ServoAngle;
-import frc.robot.subsystems.Sub_Dart;
+import frc.robot.subsystems.Sub_Elevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +24,7 @@ import frc.robot.subsystems.Sub_Dart;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-  public static Sub_Dart s_dart = new Sub_Dart();
+  public static Sub_Elevator s_elevator = new Sub_Elevator();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -48,9 +48,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Dart Ticks", Robot.s_dart.dartMotor0.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Pulse Width", Robot.s_dart.dartMotor0.getSensorCollection().getPulseWidthPosition());
-    SmartDashboard.putNumber("Velocity", Robot.s_dart.dartMotor0.getSelectedSensorVelocity());  
+    SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorMotor0.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Pulse Width", Robot.s_elevator.elevatorMotor0.getSensorCollection().getPulseWidthPosition());
+    SmartDashboard.putNumber("Velocity", Robot.s_elevator.elevatorMotor0.getSelectedSensorVelocity());  
   }
 
   /**
@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    s_dart.setServoAngle(0);
+    s_elevator.setServoAngle(0);
   }
 
   /**

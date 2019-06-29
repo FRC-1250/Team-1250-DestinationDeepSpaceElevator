@@ -13,11 +13,11 @@ import frc.robot.Robot;
 /**
  * Add your docs here.
  */
-public class Cmd_DartUp extends InstantCommand {
+public class Cmd_ElevatorUp extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public Cmd_DartUp() {
+  public Cmd_ElevatorUp() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,7 +26,7 @@ public class Cmd_DartUp extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.s_dart.dartDriveGoUp();
+    Robot.s_elevator.elevatorDriveGoUp();
   }
 
 }

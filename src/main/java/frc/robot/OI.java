@@ -9,9 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Cmd_DartDown;
-import frc.robot.commands.Cmd_DartStop;
-import frc.robot.commands.Cmd_DartUp;
+import frc.robot.commands.Cmd_ElevatorDown;
+import frc.robot.commands.Cmd_ElevatorStop;
+import frc.robot.commands.Cmd_ElevatorUp;
 import frc.robot.commands.Cmd_ElevatorGo;
 import frc.robot.commands.Cmd_ResetPosition;
 import frc.robot.commands.Cmd_ServoAngle;
@@ -62,9 +62,9 @@ public class OI {
   JoystickButton lt = new JoystickButton(Gamepad, 7);
   
   public OI() {
-    a.whenActive(new Cmd_DartDown());
-    b.whenActive(new Cmd_DartStop());
-    y.whenActive(new Cmd_DartUp());
+    a.whenActive(new Cmd_ElevatorDown());
+    b.whenActive(new Cmd_ElevatorStop());
+    y.whenActive(new Cmd_ElevatorUp());
     x.whenActive(new Cmd_ResetPosition());
     rt.whenActive(new Cmd_ElevatorGo());
     lt.whenActive(new Cmd_ServoAngle(90));

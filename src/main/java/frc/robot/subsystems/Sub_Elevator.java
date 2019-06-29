@@ -19,54 +19,54 @@ import edu.wpi.first.wpilibj.Servo;
 /**
  * Add your docs here.
  */
-public class Sub_Dart extends Subsystem {
+public class Sub_Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public WPI_TalonSRX dartMotor0 = new WPI_TalonSRX(RobotMap.ARM_DART0);
+  public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ARM_DART0);
   DigitalInput encoder = new DigitalInput(RobotMap.ENCODER);
   Servo servo = new Servo(RobotMap.SERVO);
 
-  public Sub_Dart(){
-    dartMotor0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+  public Sub_Elevator(){
+    elevatorMotor0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-    dartMotor0.config_kP(0, 2, 10);
-    dartMotor0.config_kI(0, 0, 10);
-    dartMotor0.config_kD(0, 2, 10);
+    elevatorMotor0.config_kP(0, 2, 10);
+    elevatorMotor0.config_kI(0, 0, 10);
+    elevatorMotor0.config_kD(0, 2, 10);
   }
 
   public void resetArmPos(){
-    dartMotor0.setSelectedSensorPosition(0);
+    elevatorMotor0.setSelectedSensorPosition(0);
   }
 
-  public void dartDriveGoDown(){
-    dartMotor0.set(-1);
+  public void elevatorDriveGoDown(){
+    elevatorMotor0.set(-1);
   }
 
-  public void dartDriveGoUp(){
-    dartMotor0.set(1);
+  public void elevatorDriveGoUp(){
+    elevatorMotor0.set(1);
   }
 
-  public void dartStop(){
-    dartMotor0.set(0);
+  public void elevatorStop(){
+    elevatorMotor0.set(0);
   }
 
   // -------- Velocity control
-  public void dartVelocitySetUp(){
-    dartMotor0.set(ControlMode.Velocity, 260);
+  public void elevatorVelocitySetUp(){
+    elevatorMotor0.set(ControlMode.Velocity, 260);
   }
 
-  public void dartVelocitySetDown(){
-    dartMotor0.set(ControlMode.Velocity, -260);
+  public void elevatorVelocitySetDown(){
+    elevatorMotor0.set(ControlMode.Velocity, -260);
   }
 
-  public void dartVelocityStop(){
-    dartMotor0.set(ControlMode.Velocity, 0);
+  public void elevatorVelocityStop(){
+    elevatorMotor0.set(ControlMode.Velocity, 0);
   }
   // --------
 
   public void setArmPos(){
-    dartMotor0.set(ControlMode.Position, 3600);
+    elevatorMotor0.set(ControlMode.Position, 3600);
   }
 
   public void setServoAngle(double position){

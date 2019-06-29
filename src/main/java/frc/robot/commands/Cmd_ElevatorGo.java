@@ -14,7 +14,7 @@ public class Cmd_ElevatorGo extends Command {
   public Cmd_ElevatorGo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.s_dart);
+    requires(Robot.s_elevator);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +26,7 @@ public class Cmd_ElevatorGo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.s_dart.setArmPos();
+    Robot.s_elevator.setArmPos();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,13 +38,13 @@ public class Cmd_ElevatorGo extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.s_dart.dartStop();
+    Robot.s_elevator.elevatorStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.s_dart.dartStop();
+    Robot.s_elevator.elevatorStop();
   }
 }
