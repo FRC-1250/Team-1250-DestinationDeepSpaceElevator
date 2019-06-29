@@ -19,6 +19,22 @@ public class RobotMap {
   public static final int ENCODER = 1;
   public static final int SERVO = 1;
 
+  //Drive motor controller CAN IDs
+
+   // Drive Train Subsystem IDs
+
+// Right Drive IDs
+public static final int DRV_RIGHT_FRONT = 10;
+public static final int DRV_RIGHT_MID = 11;
+public static final int DRV_RIGHT_BACK = 12;
+// Left Drive IDs
+public static final int DRV_LEFT_FRONT = 13;
+public static final int DRV_LEFT_MID = 14;
+public static final int DRV_LEFT_BACK = 15;
+// Gyro ID
+public static final int GYRO = 0;
+
+
   // Solenoid PCM Channel
   public static final int COL_SOL_HATCH = 0;
   public static final int COL_SOL_DROPINTAKEMOTORS = 1;

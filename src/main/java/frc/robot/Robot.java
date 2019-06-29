@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Cmd_ServoAngle;
+import frc.robot.subsystems.Sub_DriveTrain;
 import frc.robot.subsystems.Sub_Collector;
 import frc.robot.subsystems.Sub_Elevator;
+import frc.robot.subsystems.Sub_Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +28,8 @@ import frc.robot.subsystems.Sub_Elevator;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Sub_Elevator s_elevator = new Sub_Elevator();
+  public static Sub_DriveTrain s_drivetrain = new Sub_DriveTrain();
+  public static Sub_Limelight s_limelight = new Sub_Limelight();
   public static Sub_Collector s_collector = new Sub_Collector();
 
   Command m_autonomousCommand;
