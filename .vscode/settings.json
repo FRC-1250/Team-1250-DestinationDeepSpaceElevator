@@ -10,5 +10,6 @@
     ".classpath": true,
     ".project": true
   },
-  "wpilib.online": true
+  "wpilib.online": true,
+  "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
 }

@@ -54,9 +54,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorMotor0.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Pulse Width", Robot.s_elevator.elevatorMotor0.getSensorCollection().getPulseWidthPosition());
-    SmartDashboard.putNumber("Velocity", Robot.s_elevator.elevatorMotor0.getSelectedSensorVelocity());  
+    SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorRotations());
+
   }
 
   /**

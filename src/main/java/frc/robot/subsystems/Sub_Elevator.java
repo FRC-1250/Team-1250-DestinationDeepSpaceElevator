@@ -10,6 +10,12 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,50 +29,60 @@ public class Sub_Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
+  // public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
+  public CANSparkMax elevatorMotor0 = new CANSparkMax(RobotMap.ELEVATOR_MOTOR_0, MotorType.kBrushless);
   DigitalInput encoder = new DigitalInput(RobotMap.ENCODER);
   Servo servo = new Servo(RobotMap.SERVO);
 
-  public Sub_Elevator(){
-    elevatorMotor0.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+  public CANPIDController pid0 = new CANPIDController(elevatorMotor0);
+  public CANEncoder encoder0 = new CANEncoder(elevatorMotor0);
 
-    elevatorMotor0.config_kP(0, 2, 10);
-    elevatorMotor0.config_kI(0, 0, 10);
-    elevatorMotor0.config_kD(0, 2, 10);
+
+  public Sub_Elevator(){
+    pid0.setP(0.06);
+    pid0.setI(0.002);
+    pid0.setD(0);
+
+    elevatorMotor0.setIdleMode(IdleMode.kBrake);
+
   }
 
   public void resetArmPos(){
-    elevatorMotor0.setSelectedSensorPosition(0);
+    encoder0.setPosition(0);
   }
 
   public void elevatorDriveGoDown(){
-    elevatorMotor0.set(-1);
+    elevatorMotor0.set(-0.1);
   }
 
   public void elevatorDriveGoUp(){
-    elevatorMotor0.set(1);
+    elevatorMotor0.set(0.1);
   }
 
   public void elevatorStop(){
     elevatorMotor0.set(0);
   }
 
+  public double elevatorRotations(){
+    return encoder0.getPosition();
+  }
+
   // -------- Velocity control
-  public void elevatorVelocitySetUp(){
-    elevatorMotor0.set(ControlMode.Velocity, 260);
-  }
+  // public void elevatorVelocitySetUp(){
+  //   elevatorMotor0.set(ControlMode.Velocity, 260);
+  // }
 
-  public void elevatorVelocitySetDown(){
-    elevatorMotor0.set(ControlMode.Velocity, -260);
-  }
+  // public void elevatorVelocitySetDown(){
+  //   elevatorMotor0.set(ControlMode.Velocity, -260);
+  // }
 
-  public void elevatorVelocityStop(){
-    elevatorMotor0.set(ControlMode.Velocity, 0);
-  }
+  // public void elevatorVelocityStop(){
+  //   elevatorMotor0.set(ControlMode.Velocity, 0);
+  // }
   // --------
 
   public void setArmPos(){
-    elevatorMotor0.set(ControlMode.Position, 3600);
+    pid0.setReference(50.0, ControlType.kPosition);
   }
 
   public void setServoAngle(double position){

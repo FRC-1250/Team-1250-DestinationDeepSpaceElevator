@@ -26,7 +26,7 @@ public class Cmd_ElevatorStop extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.s_elevator.elevatorVelocityStop();
+    Robot.s_elevator.elevatorStop();
   }
 
 }
