@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.Cmd_HoldElevator;
 import edu.wpi.first.wpilibj.Servo;
 
 /**
@@ -37,6 +38,7 @@ public class Sub_Elevator extends Subsystem {
   public CANEncoder encoder0 = new CANEncoder(elevatorMotor0);
 
   public double rev_math = -0.75;
+  public double lastpos;
 
   public Sub_Elevator(){
     pid0.setP(1);
@@ -68,6 +70,14 @@ public class Sub_Elevator extends Subsystem {
     return encoder0.getPosition();
   }
 
+  public void keepTrack(){
+    lastpos = encoder0.getPosition();
+  }
+
+  public void holdPos(){
+    pid0.setReference(lastpos, ControlType.kPosition);
+  }
+
   // -------- Velocity control
   // public void elevatorVelocitySetUp(){
   //   elevatorMotor0.set(ControlMode.Velocity, 260);
@@ -90,5 +100,6 @@ public class Sub_Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Cmd_HoldElevator());
   }
 }
