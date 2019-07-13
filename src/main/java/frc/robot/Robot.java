@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.Cmd_ServoAngle;
 import frc.robot.subsystems.Sub_DriveTrain;
 import frc.robot.subsystems.Sub_Collector;
 import frc.robot.subsystems.Sub_Elevator;
@@ -55,7 +54,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorRotations());
-
   }
 
   /**
@@ -117,7 +115,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    s_elevator.setServoAngle(0);
   }
 
   /**

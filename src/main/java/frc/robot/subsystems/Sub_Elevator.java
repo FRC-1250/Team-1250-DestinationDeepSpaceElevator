@@ -19,6 +19,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 
@@ -31,17 +32,17 @@ public class Sub_Elevator extends Subsystem {
 
   // public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
   public CANSparkMax elevatorMotor0 = new CANSparkMax(RobotMap.ELEVATOR_MOTOR_0, MotorType.kBrushless);
-  DigitalInput encoder = new DigitalInput(RobotMap.ENCODER);
-  Servo servo = new Servo(RobotMap.SERVO);
 
   public CANPIDController pid0 = new CANPIDController(elevatorMotor0);
   public CANEncoder encoder0 = new CANEncoder(elevatorMotor0);
 
+  public double rev_math = -0.75;
 
   public Sub_Elevator(){
-    pid0.setP(0.06);
-    pid0.setI(0.002);
+    pid0.setP(1);
+    pid0.setI(0);
     pid0.setD(0);
+    pid0.setOutputRange(-0.4, 0.4);
 
     elevatorMotor0.setIdleMode(IdleMode.kBrake);
 
@@ -52,11 +53,11 @@ public class Sub_Elevator extends Subsystem {
   }
 
   public void elevatorDriveGoDown(){
-    elevatorMotor0.set(-0.1);
+    elevatorMotor0.set(-0.3);
   }
 
   public void elevatorDriveGoUp(){
-    elevatorMotor0.set(0.1);
+    elevatorMotor0.set(0.3);
   }
 
   public void elevatorStop(){
@@ -81,12 +82,8 @@ public class Sub_Elevator extends Subsystem {
   // }
   // --------
 
-  public void setArmPos(){
-    pid0.setReference(50.0, ControlType.kPosition);
-  }
-
-  public void setServoAngle(double position){
-    servo.setAngle(position);
+  public void setArmPos(double inches){
+    pid0.setReference(inches * rev_math, ControlType.kPosition);
   }
 
   @Override

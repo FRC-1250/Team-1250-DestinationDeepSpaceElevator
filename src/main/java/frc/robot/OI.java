@@ -14,10 +14,6 @@ import frc.robot.commands.Cmd_ElevatorStop;
 import frc.robot.commands.Cmd_ElevatorUp;
 import frc.robot.commands.Cmd_ElevatorGo;
 import frc.robot.commands.Cmd_ResetPosition;
-import frc.robot.commands.Cmd_ServoAngle;
-import frc.robot.commands.Cmd_VelocityDown;
-import frc.robot.commands.Cmd_VelocityStop;
-import frc.robot.commands.Cmd_VelocityUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,7 +38,6 @@ public class OI {
     y.whenActive(new Cmd_ElevatorUp());
     x.whenActive(new Cmd_ResetPosition());
     rt.whenActive(new Cmd_ElevatorGo());
-    lt.whenActive(new Cmd_ServoAngle(90));
   }
 
   public Joystick getGamepad(){
