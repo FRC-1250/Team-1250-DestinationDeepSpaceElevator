@@ -21,6 +21,7 @@ public class Cmd_ElevatorStop extends InstantCommand {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.s_elevator);
   }
 
   // Called once when the command executes

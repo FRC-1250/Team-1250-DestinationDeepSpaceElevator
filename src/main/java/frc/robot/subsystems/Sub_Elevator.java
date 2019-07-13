@@ -55,11 +55,11 @@ public class Sub_Elevator extends Subsystem {
   }
 
   public void elevatorDriveGoDown(){
-    elevatorMotor0.set(-0.3);
+    elevatorMotor0.set(0.1);
   }
 
   public void elevatorDriveGoUp(){
-    elevatorMotor0.set(0.3);
+    elevatorMotor0.set(-0.3);
   }
 
   public void elevatorStop(){
@@ -77,20 +77,6 @@ public class Sub_Elevator extends Subsystem {
   public void holdPos(){
     pid0.setReference(lastpos, ControlType.kPosition);
   }
-
-  // -------- Velocity control
-  // public void elevatorVelocitySetUp(){
-  //   elevatorMotor0.set(ControlMode.Velocity, 260);
-  // }
-
-  // public void elevatorVelocitySetDown(){
-  //   elevatorMotor0.set(ControlMode.Velocity, -260);
-  // }
-
-  // public void elevatorVelocityStop(){
-  //   elevatorMotor0.set(ControlMode.Velocity, 0);
-  // }
-  // --------
 
   public void setArmPos(double inches){
     pid0.setReference(inches * rev_math, ControlType.kPosition);

@@ -39,6 +39,7 @@ public class Cmd_ElevatorGo extends Command {
   @Override
   protected void end() {
     Robot.s_elevator.elevatorStop();
+    Robot.s_elevator.keepTrack();
   }
 
   // Called when another command which requires one or more of the same
