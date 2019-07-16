@@ -11,10 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Cmd_ElevatorGo extends Command {
-  public Cmd_ElevatorGo() {
+
+  double inches = 0;
+  public Cmd_ElevatorGo(double inches) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.s_elevator);
+    this.inches = inches;
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +29,7 @@ public class Cmd_ElevatorGo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.s_elevator.setArmPos(12);
+    Robot.s_elevator.setArmPos(inches);
   }
 
   // Make this return true when this Command no longer needs to run execute()

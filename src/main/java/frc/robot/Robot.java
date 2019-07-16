@@ -51,9 +51,14 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
+  public double p = 0;
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorRotations());
+    SmartDashboard.putNumber("Elevator Draw", Robot.s_elevator.armCurrentDraw());
+    SmartDashboard.getNumber("P Value", p);
+    SmartDashboard.putNumber("P Set Value", p);
+
   }
 
   /**

@@ -46,13 +46,16 @@ public class OI {
   JoystickButton rt2 = new JoystickButton(Gamepad2, 8);
   JoystickButton lt2 = new JoystickButton(Gamepad2, 7);
 
+  public double highest_pos = 32;
+  public double lowest_pos = 2;
 
   public OI() {
     a.whenActive(new Cmd_ElevatorDown());
     b.whenActive(new Cmd_ElevatorStop());
     y.whenActive(new Cmd_ElevatorUp());
     x.whenActive(new Cmd_ResetPosition());
-    rt.whenActive(new Cmd_ElevatorGo());
+    rt.whenActive(new Cmd_ElevatorGo(lowest_pos));
+    lt.whenActive(new Cmd_ElevatorGo(highest_pos));
 
     lt2.whenActive(new CmdI_CollectorHatchTongueExtend());
     rt2.whenActive(new CmdI_CollectorHatchFullPlace());

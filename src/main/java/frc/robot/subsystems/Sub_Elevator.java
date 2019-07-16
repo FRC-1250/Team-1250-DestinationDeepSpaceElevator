@@ -41,10 +41,10 @@ public class Sub_Elevator extends Subsystem {
   public double lastpos;
 
   public Sub_Elevator(){
-    pid0.setP(1);
+    pid0.setP(0.8);
     pid0.setI(0);
-    pid0.setD(0);
-    pid0.setOutputRange(-0.4, 0.4);
+    pid0.setD(0.01);
+    pid0.setOutputRange(-1, 0.4);
 
     elevatorMotor0.setIdleMode(IdleMode.kBrake);
 
@@ -54,8 +54,12 @@ public class Sub_Elevator extends Subsystem {
     encoder0.setPosition(0);
   }
 
+  public double armCurrentDraw(){
+    return elevatorMotor0.getOutputCurrent();
+  }
+
   public void elevatorDriveGoDown(){
-    elevatorMotor0.set(0.1);
+    elevatorMotor0.set(0.3);
   }
 
   public void elevatorDriveGoUp(){
