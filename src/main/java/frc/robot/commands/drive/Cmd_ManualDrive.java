@@ -59,6 +59,7 @@ public class Cmd_ManualDrive extends Command {
 
           else {
               Robot.s_drivetrain.drive(Robot.m_oi.getGamepad());
+              Robot.s_drivetrain.driveSlow(Robot.m_oi.getGamePad2());
               Robot.s_drivetrain.slowBoy();
 
           }

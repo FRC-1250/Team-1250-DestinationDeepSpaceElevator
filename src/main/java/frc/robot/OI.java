@@ -69,6 +69,10 @@ public class OI {
     return Gamepad;
   }
 
+  public Joystick getGamePad2(){
+    return Gamepad2;
+  }
+
   public Joystick getBoardController(){
     return BoardController;
   }

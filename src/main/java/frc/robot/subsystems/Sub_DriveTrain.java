@@ -140,6 +140,10 @@ public class Sub_DriveTrain extends Subsystem {
     public void drive(Joystick joy){
       drive(-joy.getY()*.8, -joy.getThrottle()*.8);
     }
+
+    public void driveSlow(Joystick joy){
+      drive(-joy.getY()*.2, -joy.getThrottle()*.2);
+    }
   
     public void driveArcade(Joystick joy) {
       diffDriveGroup.arcadeDrive(-joy.getThrottle()*.8,joy.getZ()*.8);
