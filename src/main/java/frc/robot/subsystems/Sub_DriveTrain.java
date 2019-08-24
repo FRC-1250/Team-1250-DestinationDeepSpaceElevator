@@ -138,15 +138,15 @@ public class Sub_DriveTrain extends Subsystem {
     }
   
     public void drive(Joystick joy){
-      drive(-joy.getY()*.8, -joy.getThrottle()*.8);
+      drive(-joy.getY()*1, -joy.getThrottle()*1);
     }
 
     public void driveSlow(Joystick joy){
-      drive(-joy.getY()*.2, -joy.getThrottle()*.2);
+      drive(-joy.getY()*.3, -joy.getThrottle()*.3);
     }
   
     public void driveArcade(Joystick joy) {
-      diffDriveGroup.arcadeDrive(-joy.getThrottle()*.8,joy.getZ()*.8);
+      diffDriveGroup.arcadeDrive(-joy.getThrottle()*1,joy.getZ()*1);
     }
   
     //Encoder feedback from the drivetrain
@@ -171,6 +171,28 @@ public class Sub_DriveTrain extends Subsystem {
     public void drivePosReset(){
       mLeftMotor.getEncoder().setPosition(0);
       fRightMotor.getEncoder().setPosition(0);
+    }
+
+    public double leftDriveTempMax(){
+      double fLeftTemp = fLeftMotor.getMotorTemperature();
+      double mLeftTemp = mLeftMotor.getMotorTemperature();
+      double bLeftTemp = bLeftMotor.getMotorTemperature();
+
+      double maxTemp0 = Math.max(fLeftTemp, mLeftTemp);
+      double maxTemp1 = Math.max(maxTemp0, bLeftTemp);
+
+      return maxTemp1;
+    }
+
+    public double rightDriveTempMax(){
+      double fRightTemp = fRightMotor.getMotorTemperature();
+      double mRightTemp = mRightMotor.getMotorTemperature();
+      double bRightTemp = bRightMotor.getMotorTemperature();
+
+      double maxTemp0 = Math.max(fRightTemp, mRightTemp);
+      double maxTemp1 = Math.max(maxTemp0, bRightTemp);
+
+      return maxTemp1;
     }
   
     public void linearDrivingAmpControl(){

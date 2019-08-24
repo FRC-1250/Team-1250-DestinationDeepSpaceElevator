@@ -58,6 +58,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Elevator Draw", Robot.s_elevator.armCurrentDraw());
     SmartDashboard.getNumber("P Value", p);
     SmartDashboard.putNumber("P Set Value", p);
+    SmartDashboard.putNumber("Left Max Temp", Robot.s_drivetrain.leftDriveTempMax());
+    SmartDashboard.putNumber("Right Max Temp", Robot.s_drivetrain.rightDriveTempMax());
 
   }
 
