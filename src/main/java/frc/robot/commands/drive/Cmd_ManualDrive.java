@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class Cmd_ManualDrive extends Command {
 
-  private double xCube;
+  private double xTarget;
   private double Kp = -0.025;
   private double min_command = 0.03;
 
@@ -29,23 +29,31 @@ public class Cmd_ManualDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.s_drivetrain.linearDrivingAmpControl();
-    //For switching between diving states such as tank, arcade, and assisted arcade
-    if (Robot.m_oi.getButtonState(7) && Robot.m_oi.getButtonState(8)) {
-      xCube = Robot.s_limelight.getCubeX();
 
-      double heading_error = -xCube;
+    //This method is used for protecting motor under high heat
+    Robot.s_drivetrain.linearDrivingAmpControl();
+    
+    //This if statement looks for buttons to switch into vision assisted driving
+    if (Robot.m_oi.getButtonState(7) && Robot.m_oi.getButtonState(8)) {
+      xTarget = Robot.s_limelight.getTargetOffsetX();
+      double heading_error = -xTarget;
       double steering_adjust = 0.0;
 
-          if(xCube > 1){
+          if(xTarget > 1){
               steering_adjust = Kp * heading_error + min_command;
           }
-          if(xCube < 1){
+          if(xTarget < 1){
               steering_adjust = Kp * heading_error - min_command;
           }
           Robot.s_drivetrain.slowBoy();
       Robot.s_drivetrain.trackCubeManualSpeed(steering_adjust, -Robot.m_oi.getGamepad().getThrottle());
       }
+
+      //These statements are used for switching between differnt driver configurations
+      //slowBoy is the method that is used for normal driving ramps
+      //speedRacer sets curves to 1/8th as agressive = more accel
+      //drive is normal 2 stick tank drive
+      //driveArcade is a 1 stick arcade style drive
 
         else if (Robot.m_oi.getButtonState(8)){
           Robot.s_drivetrain.slowBoy();

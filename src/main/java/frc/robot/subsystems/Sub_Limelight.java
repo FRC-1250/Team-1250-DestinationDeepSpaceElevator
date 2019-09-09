@@ -26,17 +26,17 @@ public class Sub_Limelight extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public double getCubeX() {
+  public double getTargetOffsetX() {
     NetworkTableEntry tx = table.getEntry("tx");
     return  tx.getDouble(0); 
   }
   
-  public double getCubeY() {
+  public double getTargetOffsetY() {
     NetworkTableEntry ty = table.getEntry("ty");
     return ty.getDouble(0);
   }
   
-  public double getCubeArea() {
+  public double getTargetArea() {
     NetworkTableEntry ta = table.getEntry("ta");
     return ta.getDouble(0);
   }

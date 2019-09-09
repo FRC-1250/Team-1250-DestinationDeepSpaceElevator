@@ -10,19 +10,21 @@ package frc.robot.commands.drive;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Cmd_TrackingDrive extends Command {
-    int distance = 0;
+public class Cmd_TrackingApproach extends Command {
     double upperSpeed;
     double lowerSpeed;
     float sign;
+    double distance;
+    double height = 0.125;
     private double xTarget;
+    private double yTarget;
     private double Kp = -0.035;
     private double min_command = 0.03;
 
-    public Cmd_TrackingDrive(int distance, double upperSpeed, double lowerSpeed) {
+    public Cmd_TrackingApproach(double upperSpeed, double lowerSpeed) {
       requires(Robot.s_drivetrain);
       requires(Robot.s_limelight);
-        this.distance = distance;
+
         this.upperSpeed = upperSpeed;
         this.lowerSpeed = upperSpeed;
     }
@@ -30,6 +32,12 @@ public class Cmd_TrackingDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    yTarget = Robot.s_limelight.getTargetOffsetY();
+    double camera_angle = yTarget;
+
+    distance = height/ Math.tan(camera_angle);
+
     Robot.s_drivetrain.drivePosReset();
     Robot.s_drivetrain.resetGyro();
     Robot.s_drivetrain.setSetpointPos(distance);
@@ -40,7 +48,6 @@ public class Cmd_TrackingDrive extends Command {
   @Override
   protected void execute() {
     xTarget = Robot.s_limelight.getTargetOffsetX();
-
       double heading_error = -xTarget;
       double steering_adjust = 0.0;
 
@@ -57,7 +64,7 @@ public class Cmd_TrackingDrive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-      sign = Math.signum(distance);
+      sign = Math.signum((float)distance);
 
       if (sign == 1){
           return Robot.s_drivetrain.isDoneDriving() || isTimedOut();
