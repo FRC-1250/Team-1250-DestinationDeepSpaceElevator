@@ -33,6 +33,9 @@ public class Cmd_TrackingApproach extends Command {
   @Override
   protected void initialize() {
 
+    //Derives the distance of the target based on angle of camera to the angle of target
+    //Returns distances in inches and gets fed into auto driving for auto steering and approach
+
     yTarget = Robot.s_limelight.getTargetOffsetY();
     double camera_angle = yTarget;
 
