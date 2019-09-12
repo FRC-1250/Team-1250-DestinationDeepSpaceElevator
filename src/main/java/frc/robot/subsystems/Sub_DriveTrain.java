@@ -60,7 +60,7 @@ public class Sub_DriveTrain extends Subsystem {
 
   public Sub_DriveTrain(){
 
-    //Setting Linear Voltage Ramps for Drive Motors  TO DO - Check if values are high/low enough for robot
+    //Setting Linear Voltage Ramps for Drive Motors
     //RightSide Ramps
     fRightMotor.setOpenLoopRampRate(0.8);
     mRightMotor.setOpenLoopRampRate(0.8);
