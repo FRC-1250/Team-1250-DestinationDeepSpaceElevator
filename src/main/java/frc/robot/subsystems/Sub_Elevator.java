@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.Cmd_ElevatorJog;
 import frc.robot.commands.Cmd_HoldElevator;
 import edu.wpi.first.wpilibj.Servo;
 
@@ -90,6 +91,6 @@ public class Sub_Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new Cmd_HoldElevator());
+    setDefaultCommand(new Cmd_ElevatorJog());
   }
 }
