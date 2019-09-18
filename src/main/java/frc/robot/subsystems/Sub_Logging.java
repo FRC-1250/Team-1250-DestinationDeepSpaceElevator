@@ -7,18 +7,38 @@
 
 package frc.robot.subsystems;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
 public class Sub_Logging extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+ 
+  public BufferedWriter loggingOut;
+  
+  public void createFile() throws IOException {
+  loggingOut = new BufferedWriter(new FileWriter("loggingoutput.txt"));
+  }
+
+  public void writeToFile(String loggingInput) throws IOException {
+    loggingOut.write(loggingInput);
+  }
+
+  public void flushWriteBuffer() throws IOException {
+    loggingOut.flush();
+  }
+  
+  public void newBufferedLine() throws IOException {
+    loggingOut.newLine();
+  }
 
   @Override
   public void initDefaultCommand() {
-
     //TODO Create a logging command here
     // setDefaultCommand(new MySpecialCommand());
   }

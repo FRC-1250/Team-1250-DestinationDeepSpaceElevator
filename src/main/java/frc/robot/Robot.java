@@ -16,6 +16,7 @@ import frc.robot.subsystems.Sub_DriveTrain;
 import frc.robot.subsystems.Sub_Collector;
 import frc.robot.subsystems.Sub_Elevator;
 import frc.robot.subsystems.Sub_Limelight;
+import frc.robot.subsystems.Sub_Logging;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   public static Sub_DriveTrain s_drivetrain = new Sub_DriveTrain();
   public static Sub_Limelight s_limelight = new Sub_Limelight();
   public static Sub_Collector s_collector = new Sub_Collector();
+  public static Sub_Logging s_logging = new Sub_Logging();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
