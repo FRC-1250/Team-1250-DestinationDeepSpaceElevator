@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
@@ -13,20 +13,21 @@ import frc.robot.Robot;
 /**
  * Add your docs here.
  */
-public class Cmd_ResetPosition extends InstantCommand {
+public class Cmd_ElevatorStop extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public Cmd_ResetPosition() {
+  public Cmd_ElevatorStop() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.s_elevator);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.s_elevator.resetArmPos();
+    Robot.s_elevator.elevatorStop();
   }
 
 }

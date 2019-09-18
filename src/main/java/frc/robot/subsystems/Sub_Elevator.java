@@ -21,8 +21,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.Cmd_ElevatorJog;
-import frc.robot.commands.Cmd_HoldElevator;
+import frc.robot.commands.elevator.Cmd_ElevatorDown;
 import edu.wpi.first.wpilibj.Servo;
 
 /**
@@ -32,7 +31,8 @@ public class Sub_Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  // public WPI_TalonSRX elevatorMotor0 = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
+  // public WPI_TalonSRX elevatorMotor0 = new
+  // WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR_0);
   public CANSparkMax elevatorMotor0 = new CANSparkMax(RobotMap.ELEVATOR_MOTOR_0, MotorType.kBrushless);
 
   public CANPIDController pid0 = new CANPIDController(elevatorMotor0);
@@ -41,7 +41,7 @@ public class Sub_Elevator extends Subsystem {
   public double rev_math = -0.75;
   public double lastpos;
 
-  public Sub_Elevator(){
+  public Sub_Elevator() {
     pid0.setP(0.8);
     pid0.setI(0);
     pid0.setD(0.01);
@@ -51,39 +51,39 @@ public class Sub_Elevator extends Subsystem {
 
   }
 
-  public void resetArmPos(){
+  public void resetArmPos() {
     encoder0.setPosition(0);
   }
 
-  public double armCurrentDraw(){
+  public double armCurrentDraw() {
     return elevatorMotor0.getOutputCurrent();
   }
 
-  public void elevatorDriveGoDown(){
+  public void elevatorDriveGoDown() {
     elevatorMotor0.set(0.3);
   }
 
-  public void elevatorDriveGoUp(){
+  public void elevatorDriveGoUp() {
     elevatorMotor0.set(-0.3);
   }
 
-  public void elevatorStop(){
+  public void elevatorStop() {
     elevatorMotor0.set(0);
   }
 
-  public double elevatorRotations(){
+  public double elevatorRotations() {
     return encoder0.getPosition();
   }
 
-  public void keepTrack(){
+  public void keepTrack() {
     lastpos = encoder0.getPosition();
   }
 
-  public void holdPos(){
+  public void holdPos() {
     pid0.setReference(lastpos, ControlType.kPosition);
   }
 
-  public void setArmPos(double inches){
+  public void setArmPos(double inches) {
     pid0.setReference(inches * rev_math, ControlType.kPosition);
   }
 
@@ -91,6 +91,6 @@ public class Sub_Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new Cmd_ElevatorJog());
+    setDefaultCommand(new Cmd_ElevatorDown());
   }
 }

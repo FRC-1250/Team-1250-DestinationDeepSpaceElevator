@@ -9,11 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Cmd_ElevatorDown;
-import frc.robot.commands.Cmd_ElevatorStop;
-import frc.robot.commands.Cmd_ElevatorUp;
-import frc.robot.commands.Cmd_ElevatorGo;
-import frc.robot.commands.Cmd_ResetPosition;
 import frc.robot.commands.collector.CmdG_CollectorFullCollectWithTiming;
 import frc.robot.commands.collector.CmdI_CollectorArmIntakeOff;
 import frc.robot.commands.collector.CmdI_CollectorHatchFullPlace;
@@ -21,6 +16,11 @@ import frc.robot.commands.collector.CmdI_CollectorHatchTongueExtend;
 import frc.robot.commands.collector.CmdI_CollectorHatchTongueRetract;
 import frc.robot.commands.collector.CmdT_CollectorArmIntakeSpit;
 import frc.robot.commands.collector.Cmd_CollectorInput;
+import frc.robot.commands.elevator.Cmd_ElevatorDown;
+import frc.robot.commands.elevator.Cmd_ElevatorGo;
+import frc.robot.commands.elevator.Cmd_ElevatorStop;
+import frc.robot.commands.elevator.Cmd_ElevatorUp;
+import frc.robot.commands.elevator.Cmd_ResetPosition;
 
 /**
  * This class is the glue that binds the controls on the physical operator

@@ -11,8 +11,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.logging.Cmd_Logging;
 
 /**
  * Add your docs here.
@@ -20,26 +23,43 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Sub_Logging extends Subsystem {
  
   public BufferedWriter loggingOut;
+
+  public String logFileName;
   
-  public void createFile() throws IOException {
-  loggingOut = new BufferedWriter(new FileWriter("loggingoutput.txt"));
+  public void createFile(String fileName){    
+    try {
+      loggingOut = new BufferedWriter(new FileWriter(fileName));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void writeToFile(String loggingInput) throws IOException {
-    loggingOut.write(loggingInput);
+  public void writeToFile(String loggingInput){
+    try {
+      loggingOut.write(loggingInput);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void flushWriteBuffer() throws IOException {
-    loggingOut.flush();
+  public void flushWriteBuffer(){
+    try {
+      loggingOut.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
   
-  public void newBufferedLine() throws IOException {
-    loggingOut.newLine();
+  public void newBufferedLine(){
+    try {
+      loggingOut.newLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void initDefaultCommand() {
-    //TODO Create a logging command here
-    // setDefaultCommand(new MySpecialCommand());
+      setDefaultCommand(new Cmd_Logging());
   }
 }
