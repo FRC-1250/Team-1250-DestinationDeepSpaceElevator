@@ -33,7 +33,7 @@ public class Cmd_Logging extends Command {
 
   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
   LocalDateTime now = LocalDateTime.now();  
-  logFileName = "General Gator Log" + dtf.format(now);
+  logFileName = "GeneralGatorLog" + dtf.format(now);
   Robot.s_logging.createFile(logFileName);
   }
 
