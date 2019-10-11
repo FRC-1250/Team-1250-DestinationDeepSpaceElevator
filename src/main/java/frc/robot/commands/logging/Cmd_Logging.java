@@ -21,6 +21,7 @@ public class Cmd_Logging extends Command {
   public String leftMotorString;
   public double rightMotorTemp;
   public String rightMotorString;
+  public String matchTimeString;
   public double matchTime;
 
   public Cmd_Logging() {
@@ -33,7 +34,7 @@ public class Cmd_Logging extends Command {
 
   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
   LocalDateTime now = LocalDateTime.now();  
-  logFileName = "GeneralGatorLog" + dtf.format(now);
+  logFileName = "GeneralGatorLog" + dtf.format(now) + ".csv";
   Robot.s_logging.createFile(logFileName);
   }
 
@@ -47,10 +48,12 @@ public class Cmd_Logging extends Command {
     rightMotorTemp = Robot.s_drivetrain.rightDriveTempMax();
 
     //Cast to trings and add extra information
-    leftMotorString = (Double.toString(leftMotorTemp) + "LeftMotorTemp" + matchTime);
-    rightMotorString = (Double.toString(rightMotorTemp) + "RightMotorTemp" + matchTime);
+    matchTimeString = (Double.toString(matchTime) + ",");
+    leftMotorString = (Double.toString(leftMotorTemp) + ",");
+    rightMotorString = (Double.toString(rightMotorTemp) + ",");
 
     //File writing
+    Robot.s_logging.writeToFile(matchTimeString);
     Robot.s_logging.writeToFile(leftMotorString);
     Robot.s_logging.writeToFile(rightMotorString);
 

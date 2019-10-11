@@ -58,6 +58,12 @@ public class Sub_Logging extends Subsystem {
     }
   }
 
+  public void addToLogDouble(double addDouble){
+    String addDoubleString = Double.toString(addDouble);
+    
+
+  }
+
   @Override
   public void initDefaultCommand() {
       setDefaultCommand(new Cmd_Logging());
