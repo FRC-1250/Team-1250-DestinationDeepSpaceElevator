@@ -45,7 +45,8 @@ public class Sub_Elevator extends Subsystem {
     pid0.setP(0.8);
     pid0.setI(0);
     pid0.setD(0.01);
-    pid0.setOutputRange(-1, 0.4);
+    pid0.setOutputRange(-1, 0.2);
+    // ^max-min due to being inverted
 
     elevatorMotor0.setIdleMode(IdleMode.kBrake);
 
@@ -59,12 +60,15 @@ public class Sub_Elevator extends Subsystem {
     return elevatorMotor0.getOutputCurrent();
   }
 
+  public double getElevatorTemp(){
+    return elevatorMotor0.getMotorTemperature();
+  }
   public void elevatorDriveGoDown(){
-    elevatorMotor0.set(0.3);
+    elevatorMotor0.set(0.2);
   }
 
   public void elevatorDriveGoUp(){
-    elevatorMotor0.set(-0.3);
+    elevatorMotor0.set(-0.6);
   }
 
   public void elevatorStop(){
@@ -85,12 +89,26 @@ public class Sub_Elevator extends Subsystem {
 
   public void setArmPos(double inches){
     pid0.setReference(inches * rev_math, ControlType.kPosition);
+     
+  }
+
+  public void linearElevatorAmpControl(){
+    double currentTemp = elevatorMotor0.getMotorTemperature();
+    int linearCorrect = (-4 * (int)currentTemp) + 220;
+
+    if (currentTemp < 80){
+      elevatorMotor0.setSmartCurrentLimit(100);
+    } else if (currentTemp > 100){
+      elevatorMotor0.setSmartCurrentLimit(20);
+    } else if (currentTemp >= 80){
+      elevatorMotor0.setSmartCurrentLimit(linearCorrect);
+    }
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new Cmd_ElevatorJog());
+    setDefaultCommand(new Cmd_HoldElevator());
   }
 }

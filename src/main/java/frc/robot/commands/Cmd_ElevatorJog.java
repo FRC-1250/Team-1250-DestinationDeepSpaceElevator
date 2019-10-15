@@ -25,15 +25,19 @@ public class Cmd_ElevatorJog extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if ((int)Robot.m_oi.getGamePad2().getRawAxis(4) < 0.1){
+    if ((int)Robot.m_oi.getGamePad2().getRawAxis(1) > 0){
       Robot.s_elevator.elevatorDriveGoDown();
+      Robot.s_elevator.keepTrack();
+
     }
-    else if((int)Robot.m_oi.getGamePad2().getRawAxis(4) > -0.1)
+    else if((int)Robot.m_oi.getGamePad2().getRawAxis(1) < 0)
     {
       Robot.s_elevator.elevatorDriveGoUp();
+      Robot.s_elevator.keepTrack();
+
     }
     else{
-      Robot.s_elevator.elevatorStop();
+      Robot.s_elevator.holdPos();
     }
   }
 
