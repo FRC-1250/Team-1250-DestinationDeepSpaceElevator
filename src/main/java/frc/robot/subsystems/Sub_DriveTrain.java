@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.sensors.PigeonIMU;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -34,6 +35,7 @@ public class Sub_DriveTrain extends Subsystem {
   CANSparkMax fLeftMotor = new CANSparkMax(RobotMap.DRV_LEFT_FRONT, MotorType.kBrushless);
   CANSparkMax mLeftMotor = new CANSparkMax(RobotMap.DRV_LEFT_MID, MotorType.kBrushless);
   CANSparkMax bLeftMotor = new CANSparkMax(RobotMap.DRV_LEFT_BACK, MotorType.kBrushless);
+  PigeonIMU pigeon = new PigeonIMU(RobotMap.PIGEON);
 
   //Driving motor comtroller groups for grouping drive sides without using Masters and Followers
 
@@ -213,7 +215,7 @@ public class Sub_DriveTrain extends Subsystem {
     }
   
     //Gyro Feedback and control
-    //Gets angle form gryo
+    //Gets angle from gryo
   
     public double getGyroAngle() {
       return gyro.getAngle();
@@ -224,6 +226,39 @@ public class Sub_DriveTrain extends Subsystem {
     public void resetGyro() {
       gyro.reset();
     }
+
+    // Pigeon stuff
+    public double getPigeonX(){
+      double[] xyz = new double[3];
+      pigeon.getRawGyro(xyz);
+      return xyz[0];
+    }
+
+    public double getPigeonY(){
+      double[] xyz = new double[3];
+      pigeon.getRawGyro(xyz);
+      return xyz[1];
+    }
+
+    public double getPigeonYaw(){
+      double[] ypr = new double[3];
+      pigeon.getYawPitchRoll(ypr);
+      return ypr[0];
+    }
+
+    public double getPigeonYawPitchRoll(String axis){
+      double[] ypr = new double[3];
+      pigeon.getYawPitchRoll(ypr);
+      if (axis.toLowerCase().equals("yaw")){
+        return ypr[0];
+      } else if (axis.toLowerCase().equals("pitch")) {
+        return ypr[1];
+      } else if (axis.toLowerCase().equals("roll")) {
+        return ypr[2];
+      }
+      return 0;
+    }
+
   
     //Accepts the distance that you want the robot to go during auto motions
     //Converts the distance in inches to DRIVE_TICKS

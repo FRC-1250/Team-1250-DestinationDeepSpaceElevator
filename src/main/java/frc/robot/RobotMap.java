@@ -29,22 +29,16 @@ public static final int DRV_RIGHT_BACK = 12;
 public static final int DRV_LEFT_FRONT = 13;
 public static final int DRV_LEFT_MID = 14;
 public static final int DRV_LEFT_BACK = 15;
-// Gyro ID
+// Gyro ID pigeon?
 public static final int GYRO = 0;
-
-
-  // Solenoid PCM Channel
-  public static final int COL_SOL_HATCH = 0;
-  public static final int COL_SOL_DROPINTAKEMOTORS = 1;
-  public static final int COL_SOL_POKEEYES = 2;
+public static final int PIGEON = 50;
+// Solenoid PCM Channel
+public static final int COL_SOL_CLAW = 0;
+public static final int COL_SOL_BAR = 1;
 // Collector Sensor IDs
-  public static final int COL_SENSE_HATCH = 1;
-  public static final int COL_SENSE_BALL = 0;
-// Drop Motor Victors IDs
-  public static final int COL_DROPINTAKEMOTOR_0 = 18;
-  public static final int COL_DROPINTAKEMOTOR_1 = 19;
-// Arm Collector ID
-
-  public static final int COL_ARMINTAKEMOTOR_0 = 20;
-  public static final int COL_ARMINTAKEMOTOR_1 = 21;
+public static final int COL_SENSE_BALL = 0;
+// Intake Victors IDs
+public static final int COL_CLAWMOTOR_0 = 18;
+public static final int COL_CLAWMOTOR_1 = 19;
+public static final int COL_BARINTAKEMOTOR = 20;
 }

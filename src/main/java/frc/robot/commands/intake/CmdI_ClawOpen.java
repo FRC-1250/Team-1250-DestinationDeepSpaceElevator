@@ -5,21 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.collector;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class CmdI_CollectorDropIntakeOff extends InstantCommand {
-
-  public CmdI_CollectorDropIntakeOff() {
+/**
+ * Add your docs here.
+ */
+public class CmdI_ClawOpen extends InstantCommand {
+  /**
+   * Add your docs here.
+   */
+  public CmdI_ClawOpen() {
     super();
-    requires(Robot.s_collector);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
+  // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.s_collector.dropMotorSetSpeed(0);
+  Robot.s_intake.setSolenoidClawStatus(true);
   }
 
 }

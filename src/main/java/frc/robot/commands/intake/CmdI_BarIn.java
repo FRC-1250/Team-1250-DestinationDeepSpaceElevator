@@ -5,16 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.collector;
+package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 
-public class CmdG_CollectorFullCollectWithTiming extends CommandGroup {
+/**
+ * Add your docs here.
+ */
+public class CmdI_BarIn extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public CmdG_CollectorFullCollectWithTiming() {
-   addSequential(new Cmd_CollectorCollectCargoDropMotors());
-   addSequential(new CmdT_CollectorArmIntakeTimed(0.5));
+  public CmdI_BarIn() {
+    super();
+    requires(Robot.s_intake);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
+
+  // Called once when the command executes
+  @Override
+  protected void initialize() {
+    Robot.s_intake.setSolenoidBarStatus(false);
+  }
+
 }

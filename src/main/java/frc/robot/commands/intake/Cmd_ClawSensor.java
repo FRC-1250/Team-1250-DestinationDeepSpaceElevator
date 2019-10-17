@@ -5,21 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.collector;
+package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * Add your docs here.
- */
-public class CmdT_CollectorArmIntakeSpit extends TimedCommand {
-  /**
-   * Add your docs here.
-   */
-  public CmdT_CollectorArmIntakeSpit(double timeout) {
-    super(timeout);
-      requires(Robot.s_collector);
+public class Cmd_ClawSensor extends Command {
+  public Cmd_ClawSensor() {
+    requires(Robot.s_intake);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,19 +25,22 @@ public class CmdT_CollectorArmIntakeSpit extends TimedCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.s_collector.armIntakeSpit();
   }
 
-  // Called once after timeout
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return Robot.s_intake.getBallSensor();
+  }
+
+  // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.s_collector.armIntakeStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.s_collector.armIntakeStop();
   }
 }

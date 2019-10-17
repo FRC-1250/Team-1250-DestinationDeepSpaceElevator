@@ -15,13 +15,6 @@ import frc.robot.commands.Cmd_ElevatorStop;
 import frc.robot.commands.Cmd_ElevatorUp;
 import frc.robot.commands.Cmd_ElevatorGo;
 import frc.robot.commands.Cmd_ResetPosition;
-import frc.robot.commands.collector.CmdG_CollectorFullCollectWithTiming;
-import frc.robot.commands.collector.CmdI_CollectorArmIntakeOff;
-import frc.robot.commands.collector.CmdI_CollectorHatchFullPlace;
-import frc.robot.commands.collector.CmdI_CollectorHatchTongueExtend;
-import frc.robot.commands.collector.CmdI_CollectorHatchTongueRetract;
-import frc.robot.commands.collector.CmdT_CollectorArmIntakeSpit;
-import frc.robot.commands.collector.Cmd_CollectorInput;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,6 +22,7 @@ import frc.robot.commands.collector.Cmd_CollectorInput;
  */
 public class OI {
   Joystick Gamepad = new Joystick(0);
+  // Gamepad2 is dev controller
   Joystick Gamepad2 = new Joystick(4);
   Joystick BoardController = new Joystick(3);
   Joystick BoardLeftField = new Joystick(1);
@@ -127,6 +121,7 @@ public class OI {
     hatchMid.whenActive(new Cmd_ElevatorGo(midHatchPos));
     hatchHigh.whenActive(new Cmd_ElevatorGo(highHatchPos));
 
+    /*
     lt.whenActive(new CmdI_CollectorHatchTongueExtend());
     rt.whenActive(new CmdI_CollectorHatchFullPlace());
     rb.whenActive(new CmdI_CollectorArmIntakeOff());
@@ -134,6 +129,7 @@ public class OI {
     y.whenActive(new Cmd_CollectorInput());
     x.whenActive(new CmdG_CollectorFullCollectWithTiming());
     b.whenActive(new CmdT_CollectorArmIntakeSpit(1));
+    */
   }
 
   public Joystick getGamepad(){

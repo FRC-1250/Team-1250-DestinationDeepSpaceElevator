@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Sub_DriveTrain;
-import frc.robot.subsystems.Sub_Collector;
 import frc.robot.subsystems.Sub_Elevator;
+import frc.robot.subsystems.Sub_Intake;
 import frc.robot.subsystems.Sub_Limelight;
 
 /**
@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   public static Sub_Elevator s_elevator = new Sub_Elevator();
   public static Sub_DriveTrain s_drivetrain = new Sub_DriveTrain();
   public static Sub_Limelight s_limelight = new Sub_Limelight();
-  public static Sub_Collector s_collector = new Sub_Collector();
+  public static Sub_Intake s_intake = new Sub_Intake();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -54,13 +54,14 @@ public class Robot extends TimedRobot {
   public double p = 0;
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorRotations());
-    SmartDashboard.putNumber("Elevator Draw", Robot.s_elevator.armCurrentDraw());
-    SmartDashboard.getNumber("P Value", p);
-    SmartDashboard.putNumber("P Set Value", p);
-    SmartDashboard.putNumber("Left Max Temp", Robot.s_drivetrain.leftDriveTempMax());
-    SmartDashboard.putNumber("Right Max Temp", Robot.s_drivetrain.rightDriveTempMax());
-    SmartDashboard.putNumber("Elevator Temp", Robot.s_elevator.getElevatorTemp());
+    // SmartDashboard.putNumber("Elevator Ticks", Robot.s_elevator.elevatorRotations());
+    // SmartDashboard.putNumber("Elevator Draw", Robot.s_elevator.armCurrentDraw());
+    // SmartDashboard.getNumber("P Value", p);
+    // SmartDashboard.putNumber("P Set Value", p);
+    // SmartDashboard.putNumber("Left Max Temp", Robot.s_drivetrain.leftDriveTempMax());
+    // SmartDashboard.putNumber("Right Max Temp", Robot.s_drivetrain.rightDriveTempMax());
+    // SmartDashboard.putNumber("Elevator Temp", Robot.s_elevator.getElevatorTemp());
+    SmartDashboard.putNumber("Pigeon Yaw", Robot.s_drivetrain.getPigeonYaw());
   }
 
   /**
