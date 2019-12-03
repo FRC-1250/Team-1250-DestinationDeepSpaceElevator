@@ -8,6 +8,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.Cmd_ElevatorGo;
 
 public class CmdG_FullCollect extends CommandGroup {
   /**
@@ -16,9 +17,11 @@ public class CmdG_FullCollect extends CommandGroup {
   public CmdG_FullCollect() {
     addParallel(new CmdI_BarOut());
     addParallel(new CmdI_ClawOpen());
+    addSequential(new Cmd_ElevatorGo(0));
     addParallel(new CmdI_BarMotorOn());
     addParallel(new CmdI_ClawMotorsIn());
     addSequential(new Cmd_ClawSensor());
+    addSequential(new Cmd_ElevatorGo(5));
     addSequential(new CmdI_BarIn());
     addParallel(new CmdI_BarMotorStop());
     addParallel(new CmdI_ClawMotorsOff());

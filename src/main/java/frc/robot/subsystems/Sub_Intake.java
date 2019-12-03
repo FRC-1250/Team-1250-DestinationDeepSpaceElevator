@@ -23,7 +23,6 @@ public class Sub_Intake extends Subsystem {
   // here. Call these from Commands.
 
   WPI_VictorSPX intakeBarMotor0 = new WPI_VictorSPX(RobotMap.COL_BARINTAKEMOTOR_0);
-  WPI_VictorSPX intakeBarMotor1 = new WPI_VictorSPX(RobotMap.COL_BARINTAKEMOTOR_1);
   WPI_VictorSPX intakeClawMotor0 = new WPI_VictorSPX(RobotMap.COL_CLAWMOTOR_0);
   WPI_VictorSPX intakeClawMotor1 = new WPI_VictorSPX(RobotMap.COL_CLAWMOTOR_1);
   DigitalInput ballSensor = new DigitalInput(RobotMap.COL_SENSE_BALL);
@@ -31,15 +30,14 @@ public class Sub_Intake extends Subsystem {
   Solenoid solenoidBar = new Solenoid(RobotMap.COL_SOL_BAR);
 
   public Sub_Intake(){
-
-    intakeBarMotor.setNeutralMode(NeutralMode.Brake);
+    intakeBarMotor0.setNeutralMode(NeutralMode.Brake);
     intakeClawMotor0.setNeutralMode(NeutralMode.Brake);
     intakeClawMotor1.setNeutralMode(NeutralMode.Brake);
 
   }
 
   public void setBarMotorSpeed(double speed){
-    intakeBarMotor.set(speed);
+    intakeBarMotor0.set(speed);
   }
 
   public void setClawMotor0Speed(double speed){
@@ -61,6 +59,16 @@ public class Sub_Intake extends Subsystem {
   public void setSolenoidBarStatus(boolean status){
     solenoidBar.set(status);
   }
+
+  public void barExtend(){
+    solenoidBar.set(true);
+  }
+
+  public void barRetract(){
+    solenoidBar.set(false);
+  }
+
+
 
 
   @Override

@@ -62,6 +62,7 @@ public class OI {
   public double highCargoPos = 83.5/2.0;
   public double shipCargoPos = 39.625/2.0; 
   public double homePos = 0;
+  public double fakeHomePos = 10.0/2.0;
   //------------------------------------
  
   public double highest_pos = 16;
@@ -113,7 +114,7 @@ public class OI {
     lt2.whenActive(new Cmd_ElevatorGo(lowest_pos));
 
 
-    home.whenInactive(new Cmd_ElevatorGo(lowest_pos));
+    home.whenInactive(new Cmd_ElevatorGo(fakeHomePos));
     cargoLow.whenActive(new Cmd_ElevatorGo(lowCargoPos));
     cargoMid.whenActive(new Cmd_ElevatorGo(midCargoPos));
     cargoHigh.whenActive(new Cmd_ElevatorGo(shipCargoPos)); // cargoHigh button is cargo ship
