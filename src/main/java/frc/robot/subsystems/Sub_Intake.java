@@ -22,7 +22,8 @@ public class Sub_Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_VictorSPX intakeBarMotor = new WPI_VictorSPX(RobotMap.COL_BARINTAKEMOTOR);
+  WPI_VictorSPX intakeBarMotor0 = new WPI_VictorSPX(RobotMap.COL_BARINTAKEMOTOR_0);
+  WPI_VictorSPX intakeBarMotor1 = new WPI_VictorSPX(RobotMap.COL_BARINTAKEMOTOR_1);
   WPI_VictorSPX intakeClawMotor0 = new WPI_VictorSPX(RobotMap.COL_CLAWMOTOR_0);
   WPI_VictorSPX intakeClawMotor1 = new WPI_VictorSPX(RobotMap.COL_CLAWMOTOR_1);
   DigitalInput ballSensor = new DigitalInput(RobotMap.COL_SENSE_BALL);

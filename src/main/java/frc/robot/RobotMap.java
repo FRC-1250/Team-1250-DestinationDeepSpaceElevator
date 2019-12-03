@@ -40,5 +40,6 @@ public static final int COL_SENSE_BALL = 0;
 // Intake Victors IDs
 public static final int COL_CLAWMOTOR_0 = 18;
 public static final int COL_CLAWMOTOR_1 = 19;
-public static final int COL_BARINTAKEMOTOR = 20;
+public static final int COL_BARINTAKEMOTOR_0 = 20;
+public static final int COL_BARINTAKEMOTOR_1 = 21;
 }
