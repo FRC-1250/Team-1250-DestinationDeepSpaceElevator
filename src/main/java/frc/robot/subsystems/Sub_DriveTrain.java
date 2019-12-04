@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -35,6 +37,14 @@ public class Sub_DriveTrain extends Subsystem {
   CANSparkMax mLeftMotor = new CANSparkMax(RobotMap.DRV_LEFT_MID, MotorType.kBrushless);
   CANSparkMax bLeftMotor = new CANSparkMax(RobotMap.DRV_LEFT_BACK, MotorType.kBrushless);
 
+  CANPIDController fRightPID = new CANPIDController(fRightMotor);
+  CANPIDController mRightPID = new CANPIDController(mRightMotor);
+  CANPIDController bRightPID = new CANPIDController(bRightMotor);
+  CANPIDController fLeftPID = new CANPIDController(fLeftMotor);
+  CANPIDController mLeftPID = new CANPIDController(mLeftMotor);
+  CANPIDController bLeftPID = new CANPIDController(bLeftMotor);
+
+
   //Driving motor comtroller groups for grouping drive sides without using Masters and Followers
 
 
@@ -52,6 +62,13 @@ public class Sub_DriveTrain extends Subsystem {
 	private final double KP_SIMPLE_STRAIT = 0.01;
 	private final double KP_SIMPLE = 0.05;
   private final double KI_SIMPLE = 0.03;
+
+  private final double wheelBaseInches = 27;
+
+  private final double DRIVE_P = 0;
+  private final double DRIVE_I = 0;
+  private final double DRIVE_D = 0;
+
   
   AnalogGyro gyro = new AnalogGyro(RobotMap.GYRO);
 
@@ -324,6 +341,62 @@ public class Sub_DriveTrain extends Subsystem {
   
     diffDriveGroup.arcadeDrive(linearRamp(upperSpeed,lowerSpeed) * sign, xCorrect);
     
+  }
+
+  public void autoArcDrive(double majorDistance, double minorDistance, String direction){
+    //----------------------------------------------
+    //Variables
+    //Left to right side wheel distance in inches
+    double wheelBase = wheelBaseInches;
+    //Minor length of ellipse
+    double a = minorDistance;
+    //When adjusting for left turns, right side must travel the incrased arc
+    double aCorrectedLeft = minorDistance + wheelBase;
+    //When Adjusting for right turns, left side must travel the increaded arc
+    double aCorrectedRight = minorDistance - wheelBase;
+    //Constant for both directions
+    double b = majorDistance/2.0;
+    //Left Wheels Constant
+    double arcLengthLeft = 0;
+    //Right Wheels will drive this distance when turning left
+    double arcLengthRightAdjustedLeft = 0;
+    //Right Wheels will drive this distance when turning right
+    double arcLengthRightAdjustedRight = 0;
+    //Integration precision 
+    double dTheta = 0.0001;
+    //----------------------------------------------
+
+    //----------------------------------------------
+    //Numerical integration for arc length
+    //Left side of robot arc constant
+    for(double theta = Math.PI/2d; theta < 3d*Math.PI/4d; theta += dTheta) {
+    arcLengthLeft += Math.sqrt(Math.pow(a,2)*Math.pow(Math.sin(theta),2)+Math.pow(b,2)*Math.pow(Math.cos(theta),2)) * dTheta;
+    }
+    //Right side of robot arc adjusted for left turns
+    for(double thetaCorrectLeft = Math.PI/2d; thetaCorrectLeft < 3d*Math.PI/4d; thetaCorrectLeft += dTheta) {
+    arcLengthRightAdjustedLeft += Math.sqrt(Math.pow(aCorrectedLeft,2)*Math.pow(Math.sin(thetaCorrectLeft),2)+Math.pow(b,2)*Math.pow(Math.cos(thetaCorrectLeft),2)) * dTheta;
+    }
+    //Right side of robot arc adjusted for right turns
+    for(double thetaCorrectRight = Math.PI/2d; thetaCorrectRight < 3d*Math.PI/4d; thetaCorrectRight += dTheta) {
+    arcLengthRightAdjustedRight += Math.sqrt(Math.pow(aCorrectedRight,2)*Math.pow(Math.sin(thetaCorrectRight),2)+Math.pow(b,2)*Math.pow(Math.cos(thetaCorrectRight),2)) * dTheta;
+    }
+    //----------------------------------------------
+
+    //----------------------------------------------
+    //Driving execution
+    //When turning right
+    if(direction =="right"){
+      
+    }
+    //When turning left
+    else if(direction =="left"){
+
+    }
+    //Incorrect direction input
+    else{
+      System.out.println("Invalid Direction... Enter 'left' or 'right'");
+    }
+    //----------------------------------------------
   }
   
     //Assorted PID math for auto driving
